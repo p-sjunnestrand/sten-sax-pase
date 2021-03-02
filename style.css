@@ -1,15 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+body{
+    background-color: #140626;
+}
+header{
+    display: flex;
+    justify-content: center;
+}
 #wrapper{
     display: flex;
     width: 100vw;
     justify-content: space-around;
     align-items: center;
+    background-color: black;
+    flex-wrap: wrap;
 }
 .playerWrapper{
     display: flex;
+    background-color:#2E038C;
+    height: 100%;
+    font-size: 24px;
+    justify-content: space-around;
+    width: 40vw;
     flex-direction: column;
-    align-items: center;
 }
+.playerChoice{
+    min-height: 20vh;
+}
+/* #weaponsWrp{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+} */
 #result{
     font-size: 48px;
     text-align: center;
+}
+ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 0;
+}
+li{
+    height: auto;
+}
+/* #weaponDiv1{
+    background-image: url("Rock-paper-scissors_(rock).png");
+    background-size: contain;
+    width: 30%;
+    height: 150px;
+    background-repeat: no-repeat;
+}
+#weaponDiv2{
+    background-image: url("Rock-paper-scissors_(paper).png");
+    background-size: contain;
+    width: 30%;
+    height: 150px;
+    background-repeat: no-repeat;
+}
+#weaponDiv3{
+    background-image: url("Rock-paper-scissors_(scissors).png");
+    background-size: contain;
+    width: 30%;
+    height: 150px;
+    background-repeat: no-repeat;
+} */
+.fighterWrapper{
+    list-style-type: none;
+    width: 250px;
+    height: 250px;
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    grid-template-areas:
+        "stefan greta babben"
+        "ernst random verka"
+        "vasa torsten devil";
+    column-gap: 5px;
+    row-gap: 5px;
+}
+.stefan{grid-area: stefan;}
+.greta{grid-area: greta;}
+.babben{grid-area: babben;}
+.ernst{grid-area: ernst;}
+.random{grid-area: random; font-size: 80px; text-align: center;}
+.verka{grid-area: verka;}
+.vasa{grid-area: vasa;}
+.torsten{grid-area: torsten;}
+.devil{grid-area: devil;}
+
+.fighter{
+    width: 80px;
+    height: 80px;
+}
+.fighterSelected{
+    border: solid 5px #F23D4C;
+    box-sizing: border-box;
+}
+#fighterHeader{
+    flex-basis: 100%;
+}
+#buttonWrapper{
+    flex-basis: 100%;
+}
+.chosenFighter{
+    min-height: 40px;
 }
