@@ -89,10 +89,24 @@
 //     checkResult(result);
 // }
 startScreen();
+let playerFighter;
+let computerFighter;
+let fighterArray = [
+    {"fighter" : "Stefan", "id" : "stefan", "picture" : "Tallinn_Digital_Summit._Handshake_Stefan_Löfven_and_Jüri_Ratas_(36718147193)_(cropped).jpg"},
+    {"fighter" : "Greta", "id" : "greta", "picture" : "Greta_Thunberg_urges_MEPs_to_show_climate_leadership_(49618310531)_(cropped).jpg"},
+    {"fighter" : "Babben", "id" : "babben", "picture" : "Babben_Larsson_2014-11-28_001.jpg"},
+    {"fighter" : "Ernst", "id" : "ernst", "picture" : "Ernst_Kirchsteiger.jpg"},
+    {"fighter" : "Verka Serduchka", "id" : "verka", "picture" : "Верка_Сердючка._Photo_386_(cropped).jpg"},
+    {"fighter" : "Gustav Vasa", "id" : "vasa", "picture" : "gustav_vasa.jpg"},
+    {"fighter" : "Torsten", "id" : "torsten", "picture" : "ginger-fat-cat-lies-windowsill_283727-192.jpg"},
+    {"fighter" : "Hin Håle", "id" : "devil", "picture" : "1200px-Baphomet.png"},
+    {"fighter" : "Slumpad", "id" : "random", "picture" : ""}
+];
 
 document.getElementById('pickFighter').addEventListener('click', function(){
     fighterPicker();
 })
+
 function startScreen () {
     let startMenu = document.createElement('ul');
         startMenu.insertAdjacentHTML('beforeend', `<li id = 'pickFighter' class = 'btn'>Välj kämpe</li>`);
@@ -111,17 +125,6 @@ function fighterPicker () {
     playerSide.classList.add('fighterSide');
     document.getElementById('wrapper').appendChild(playerSide);
 
-    let fighterArray = [
-        {"fighter" : "Stefan", "id" : "stefan", "picture" : "Tallinn_Digital_Summit._Handshake_Stefan_Löfven_and_Jüri_Ratas_(36718147193)_(cropped).jpg"},
-        {"fighter" : "Greta", "id" : "greta", "picture" : "Greta_Thunberg_urges_MEPs_to_show_climate_leadership_(49618310531)_(cropped).jpg"},
-        {"fighter" : "Babben", "id" : "babben", "picture" : "Babben_Larsson_2014-11-28_001.jpg"},
-        {"fighter" : "Ernst", "id" : "ernst", "picture" : "Ernst_Kirchsteiger.jpg"},
-        {"fighter" : "Slumpad", "id" : "random", "picture" : ""},
-        {"fighter" : "Verka Serduchka", "id" : "verka", "picture" : "Верка_Сердючка._Photo_386_(cropped).jpg"},
-        {"fighter" : "Gustav Vasa", "id" : "vasa", "picture" : "gustav_vasa.jpg"},
-        {"fighter" : "Torsten", "id" : "torsten", "picture" : "ginger-fat-cat-lies-windowsill_283727-192.jpg"},
-        {"fighter" : "Hin Håle", "id" : "devil", "picture" : "1200px-Baphomet.png"}
-    ];
     console.log(fighterArray);
     // let fighterWrapper = document.createElement('div');
     // fighterWrapper.classList.add('fighterWrapper');
@@ -163,7 +166,7 @@ function fighterPicker () {
         if (fighterArray[fighter].id == 'random') {
             fighterWrapperC.insertAdjacentHTML('beforeend', `<div class = "fighter ${fighterArray[fighter].id}" id = "${fighterArray[fighter].id}C">?</div>`);
         } else {
-            fighterWrapperC.insertAdjacentHTML('beforeend', `<div class = "fighter ${fighterArray[fighter].id}"><img src="${fighterArray[fighter].picture}" id = "${fighterArray[fighter].id}C" class = "fighter"/></div>`);
+            fighterWrapperC.insertAdjacentHTML('beforeend', `<div class = "fighter ${fighterArray[fighter].id}"><img src="${fighterArray[fighter].picture}" class = "fighter ${fighterArray[fighter].id}" id = "${fighterArray[fighter].id}C"/></div>`);
         }
     }
     computerSide.appendChild(fighterWrapperC);
@@ -171,6 +174,10 @@ function fighterPicker () {
     chosenFighterC.id = 'chosenFighterC';
     chosenFighterC.classList.add('chosenFighter');
     computerSide.appendChild(chosenFighterC);
+
+    let startFightMessage = document.createElement('div');
+    startFightMessage.id = 'startFightMessage';
+    document.getElementById('wrapper').appendChild(startFightMessage);
 
     let buttonWrapper = document.createElement('div');
     buttonWrapper.id = 'buttonWrapper';
@@ -184,16 +191,55 @@ function fighterPicker () {
 
     fighterWrapperP.addEventListener('click', function(evt){
         console.log(evt);
-        let selected = document.querySelector('.fighterSelected');
+        let selected = document.querySelector('.fighterSelectedP');
         if (selected != null){
-            selected.classList.remove('fighterSelected');
+            selected.classList.remove('fighterSelectedP');
         }
         for (fighter in fighterArray) {
             if (evt.target.classList[1] == fighterArray[fighter].id){
                 console.log(fighterArray[fighter].fighter);
+                if (fighterArray[fighter].fighter == 'Slumpad') {
+                    let randomFighterP = Math.floor(Math.random() * 8);
+                    playerFighter = fighterArray[randomFighterP].fighter;
+                } else {
+                    playerFighter = fighterArray[fighter].fighter;
+                }
                 chosenFighterP.innerHTML = fighterArray[fighter].fighter;
-                document.getElementById(evt.target.id).classList.add('fighterSelected');
+                document.getElementById(evt.target.id).classList.add('fighterSelectedP');
             }
+        }
+    });
+
+    fighterWrapperC.addEventListener('click', function(evt){
+        console.log(evt);
+        let selected = document.querySelector('.fighterSelectedC');
+        if (selected != null){
+            selected.classList.remove('fighterSelectedC');
+        }
+        for (fighter in fighterArray) {
+            if (evt.target.classList[1] == fighterArray[fighter].id){
+                console.log(fighterArray[fighter].fighter);
+                if (fighterArray[fighter].fighter == 'Slumpad') {
+                    let randomFighterC = Math.floor(Math.random() * 8);
+                    console.log(randomFighterC);
+                    computerFighter = fighterArray[randomFighterC].fighter;
+                } else {
+                    computerFighter = fighterArray[fighter].fighter;
+                }
+                chosenFighterC.innerHTML = fighterArray[fighter].fighter;
+                document.getElementById(evt.target.id).classList.add('fighterSelectedC');
+            }
+        }
+    });
+
+    document.getElementById('startFightButton').addEventListener('click', function(){
+        console.log(playerFighter);
+        if (playerFighter === undefined || computerFighter === undefined){
+            console.log('Välj en kämpe för dig själv och datorn!');
+            startFightMessage.innerHTML = 'Välj en kämpe för dig själv och datorn!';
+        }
+        else {
+            startFightMessage.innerHTML = `${playerFighter} vs ${computerFighter}!`;
         }
     });
 }

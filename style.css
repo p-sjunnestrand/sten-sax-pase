@@ -81,8 +81,8 @@ li{
         "stefan greta babben"
         "ernst random verka"
         "vasa torsten devil";
-    column-gap: 5px;
-    row-gap: 5px;
+    column-gap: 2.5px;
+    row-gap: 2.5px;
 }
 .stefan{grid-area: stefan;}
 .greta{grid-area: greta;}
@@ -97,12 +97,23 @@ li{
 .fighter{
     width: 80px;
     height: 80px;
+    border: solid 2.5px black;
+    box-sizing: border-box;
 }
-.fighterSelected{
-    border: solid 5px #F23D4C;
+.fighterSelectedP{
+    width: 80px;
+    height: 80px;
+    border: solid 2.5px #F23D4C;
+    box-sizing: border-box;
+}
+.fighterSelectedC{
+    width: 80px;
+    height: 80px;
+    border: solid 2.5px #49F2E1;
     box-sizing: border-box;
 }
 #fighterHeader{
+    font-family: 'Trade Winds', cursive;
     flex-basis: 100%;
 }
 #buttonWrapper{
@@ -110,4 +121,11 @@ li{
 }
 .chosenFighter{
     min-height: 40px;
+}
+.btn{
+    font-family: 'Trade Winds', cursive;;
+}
+#startFightMessage{
+    min-height: 60px;
+    flex-basis: 100%;
 }
