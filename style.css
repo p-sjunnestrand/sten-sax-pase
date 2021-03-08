@@ -4,19 +4,42 @@
     color: white;
 }
 body{
-    background-color: #140626;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(22,9,121,1) 45%, rgba(192,4,201,1) 69%, rgba(255,209,0,1) 100%);
+    font-family: 'Righteous', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 header{
     display: flex;
     justify-content: center;
 }
+#backdrop{
+    width: 1000px;
+    height: 600px;
+    position: absolute;
+    z-index: 0;
+    /* background-color: black; */
+}
+main{
+    width: 1000px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #wrapper{
     display: flex;
-    width: 100vw;
     justify-content: space-around;
     align-items: center;
     background-color: black;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+    width: 1000px;
+    height: 600px;
 }
 .playerWrapper{
     display: flex;
@@ -72,11 +95,11 @@ li{
 } */
 .fighterWrapper{
     list-style-type: none;
-    width: 250px;
-    height: 250px;
+    width: 370px;
+    height: 370px;
     display: grid;
-    grid-template-columns: repeat(3, 80px);
-    grid-template-rows: repeat(3, 80px);
+    grid-template-columns: repeat(3, 120px);
+    grid-template-rows: repeat(3, 120px);
     grid-template-areas:
         "stefan greta babben"
         "ernst random verka"
@@ -95,37 +118,143 @@ li{
 .devil{grid-area: devil;}
 
 .fighter{
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     border: solid 2.5px black;
     box-sizing: border-box;
 }
 .fighterSelectedP{
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     border: solid 2.5px #F23D4C;
     box-sizing: border-box;
 }
 .fighterSelectedC{
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     border: solid 2.5px #49F2E1;
     box-sizing: border-box;
 }
 #fighterHeader{
-    font-family: 'Trade Winds', cursive;
     flex-basis: 100%;
+    font-size: 50px;
+    background: -webkit-linear-gradient(90deg, #0BC4D9 11%, #D932CE 50%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
 }
 #buttonWrapper{
     flex-basis: 100%;
 }
 .chosenFighter{
     min-height: 40px;
+    font-size: 30px;
 }
 .btn{
-    font-family: 'Trade Winds', cursive;;
+    font-family: 'Yellowtail', cursive;
+    font-size: 40px;
+    border: violet 2px solid;
+    width: 220px;
+    border-radius: 38px;
+    text-align: center;
+}
+.btn:hover{
+    cursor: pointer;
+    background: rgb(46,3,140);
+    background: linear-gradient(180deg, rgba(46,3,140,1) 29%, rgba(192,4,201,1) 100%);
 }
 #startFightMessage{
     min-height: 60px;
     flex-basis: 100%;
+    font-size: 35px;
+    text-align: center;
 }
+#blackFade{
+    position: absolute;
+    animation: fadein 0.5s 1 forwards;
+    width: 1000px;
+    height: 600px;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0);
+    overflow: hidden;
+}
+@keyframes fadein {
+    0% {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 1);
+    }
+}
+#playerSlidePic{
+    width: 350px;
+}
+#playerSlide{
+    position: absolute;
+    width: 350px;
+    animation: rightslide 0.5s forwards;
+    left: -250px;
+    display: block;
+    font-size: 36px;
+}
+@keyframes rightslide {
+    100% {
+        transform: translate(250px);
+    }
+}
+#vs{
+    font-size: 180px;
+    position: absolute;
+    animation: slideDown 1.8s forwards;
+    text-shadow: 3px 3px #0BC4D9, 5px 5px #D932CE;
+    top: -180px;
+    left: 358px;
+    z-index: 3;
+    font-family: 'Yellowtail', cursive;
+}
+@keyframes slideDown{
+    25%{
+        top: 184px;
+        left: 358px;
+    }
+    50%{
+        top: 184px;
+        left: 358px;
+    }
+    75%{
+        top: 184px;
+        left: 358px;
+    }
+     100%{
+        top: 780px;
+    } 
+}
+#computerSlidePic{
+    width: 350px;
+    position: relative;
+    bottom: -13px;
+}
+#computerSlide{
+    position: absolute;
+    width: 350px;
+    animation: leftslide 0.5s 1 forwards;
+    right: -250px;
+    bottom: 0;
+    display: block;
+    font-size: 36px;
+    font-family: 'Righteous', cursive;
+}
+@keyframes leftslide {
+    100% {
+        transform: translate(-250px);
+    }
+}
+#computerText{
+    background-color: #0BC4D9;
+}
+#playerText{
+    background-color: #D932CE;
+}
+
+

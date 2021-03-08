@@ -92,14 +92,14 @@ startScreen();
 let playerFighter;
 let computerFighter;
 let fighterArray = [
-    {"fighter" : "Stefan", "id" : "stefan", "picture" : "Tallinn_Digital_Summit._Handshake_Stefan_Löfven_and_Jüri_Ratas_(36718147193)_(cropped).jpg"},
-    {"fighter" : "Greta", "id" : "greta", "picture" : "Greta_Thunberg_urges_MEPs_to_show_climate_leadership_(49618310531)_(cropped).jpg"},
-    {"fighter" : "Babben", "id" : "babben", "picture" : "Babben_Larsson_2014-11-28_001.jpg"},
-    {"fighter" : "Ernst", "id" : "ernst", "picture" : "Ernst_Kirchsteiger.jpg"},
-    {"fighter" : "Verka Serduchka", "id" : "verka", "picture" : "Верка_Сердючка._Photo_386_(cropped).jpg"},
-    {"fighter" : "Gustav Vasa", "id" : "vasa", "picture" : "gustav_vasa.jpg"},
-    {"fighter" : "Torsten", "id" : "torsten", "picture" : "ginger-fat-cat-lies-windowsill_283727-192.jpg"},
-    {"fighter" : "Hin Håle", "id" : "devil", "picture" : "1200px-Baphomet.png"},
+    {"fighter" : "Stefan", "id" : "stefan", "picture" : "img/square/stefan-square.jpg"},
+    {"fighter" : "Greta", "id" : "greta", "picture" : "img/square/greta-square.jpg"},
+    {"fighter" : "Babben", "id" : "babben", "picture" : "img/square/babben-square.jpg"},
+    {"fighter" : "Ernst", "id" : "ernst", "picture" : "img/square/ernst-square.jpg"},
+    {"fighter" : "Verka Serduchka", "id" : "verka", "picture" : "img/square/verka-square.jpg"},
+    {"fighter" : "Gustav Vasa", "id" : "vasa", "picture" : "img/square/gustav_vasa.jpg"},
+    {"fighter" : "Torsten", "id" : "torsten", "picture" : "img/square/torsten-square.jpg"},
+    {"fighter" : "Hin Håle", "id" : "devil", "picture" : "img/square/baphomet-square.png"},
     {"fighter" : "Slumpad", "id" : "random", "picture" : ""}
 ];
 
@@ -200,9 +200,9 @@ function fighterPicker () {
                 console.log(fighterArray[fighter].fighter);
                 if (fighterArray[fighter].fighter == 'Slumpad') {
                     let randomFighterP = Math.floor(Math.random() * 8);
-                    playerFighter = fighterArray[randomFighterP].fighter;
+                    playerFighter = fighterArray[randomFighterP]//.fighter;
                 } else {
-                    playerFighter = fighterArray[fighter].fighter;
+                    playerFighter = fighterArray[fighter]//.fighter;
                 }
                 chosenFighterP.innerHTML = fighterArray[fighter].fighter;
                 document.getElementById(evt.target.id).classList.add('fighterSelectedP');
@@ -222,9 +222,9 @@ function fighterPicker () {
                 if (fighterArray[fighter].fighter == 'Slumpad') {
                     let randomFighterC = Math.floor(Math.random() * 8);
                     console.log(randomFighterC);
-                    computerFighter = fighterArray[randomFighterC].fighter;
+                    computerFighter = fighterArray[randomFighterC]//.fighter;
                 } else {
-                    computerFighter = fighterArray[fighter].fighter;
+                    computerFighter = fighterArray[fighter]//.fighter;
                 }
                 chosenFighterC.innerHTML = fighterArray[fighter].fighter;
                 document.getElementById(evt.target.id).classList.add('fighterSelectedC');
@@ -233,13 +233,74 @@ function fighterPicker () {
     });
 
     document.getElementById('startFightButton').addEventListener('click', function(){
-        console.log(playerFighter);
+        //console.log(playerFighter);
         if (playerFighter === undefined || computerFighter === undefined){
             console.log('Välj en kämpe för dig själv och datorn!');
             startFightMessage.innerHTML = 'Välj en kämpe för dig själv och datorn!';
         }
         else {
-            startFightMessage.innerHTML = `${playerFighter} vs ${computerFighter}!`;
+            // startFightMessage.innerHTML = `${playerFighter.fighter} vs ${computerFighter.fighter}!`;
+            loadFightScreen(playerFighter, computerFighter);
         }
     });
+}
+
+function loadFightScreen (playerOne, playerTwo) {
+    // fades screen to black
+    let blackFade = document.createElement('div');
+    blackFade.id = "blackFade";
+    document.querySelector('main').insertAdjacentElement('afterbegin', blackFade);
+
+    setTimeout( () => {
+        document.getElementById('wrapper').innerHTML = '';
+        blackFade.remove();
+    
+        setTimeout( () => {
+            //creates a picture of chosen player character that slides in from left
+            let playerSlide = document.createElement('div');
+            playerSlide.id = 'playerSlide';
+            let playerSlidePic = document.createElement('img');
+            playerSlidePic.id = 'playerSlidePic';
+            playerSlidePic.src = playerOne.picture;
+            console.log(playerSlidePic);
+            playerSlide.appendChild(playerSlidePic);
+            blackFade.appendChild(playerSlide);
+            let playerText = document.createElement('div');
+            playerText.id = 'playerText';
+            playerText.insertAdjacentHTML('afterbegin', `${playerOne.fighter}`);
+            playerSlide.appendChild(playerText);
+
+            setTimeout( () => {
+                // creates the text VS
+                let vsText = document.createElement('div');
+                vsText.innerHTML = 'VS';
+                vsText.id ='vs';
+                blackFade.appendChild(vsText);
+                
+                setTimeout( () => {
+                    //creates a picture of chosen computer character that slides in from left
+                    let computerSlide = document.createElement('div');
+                    computerSlide.id = 'computerSlide';
+                    let computerText = document.createElement('div');
+                    computerText.id = 'computerText';
+                    computerText.insertAdjacentHTML('afterbegin', `${playerTwo.fighter}`);
+                    computerSlide.appendChild(computerText);
+                    let computerSlidePic = document.createElement('img');
+                    computerSlidePic.id = 'computerSlidePic';
+                    computerSlidePic.src = playerTwo.picture;
+                    computerSlide.appendChild(computerSlidePic);
+                    blackFade.appendChild(computerSlide);
+
+                    setTimeout( () => {
+                        loadMatch();
+                    }, 2000)
+                }, 500);
+            }, 700);
+        }, 500);
+    }, 500)
+}
+
+function loadMatch() {
+    document.getElementById('wrapper').innerHTML = '';
+    
 }
