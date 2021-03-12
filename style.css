@@ -40,6 +40,7 @@ main{
     z-index: 1;
     width: 1000px;
     height: 600px;
+    overflow: hidden;
 }
 .playerWrapper{
     display: flex;
@@ -53,11 +54,12 @@ main{
 .playerChoice{
     min-height: 20vh;
 }
-/* #weaponsWrp{
+#weaponsWrp{
     display: flex;
     justify-content: space-around;
     width: 100%;
-} */
+    height: 82px;
+}
 #result{
     font-size: 48px;
     text-align: center;
@@ -122,11 +124,12 @@ li{
     height: 120px;
     border: solid 2.5px black;
     box-sizing: border-box;
+    cursor: pointer;
 }
 .fighterSelectedP{
     width: 120px;
     height: 120px;
-    border: solid 2.5px #F23D4C;
+    border: solid 2.5px #D932CE;
     box-sizing: border-box;
 }
 .fighterSelectedC{
@@ -138,10 +141,12 @@ li{
 #fighterHeader{
     flex-basis: 100%;
     font-size: 50px;
-    background: -webkit-linear-gradient(90deg, #0BC4D9 11%, #D932CE 50%);
+    /* background: -webkit-linear-gradient(90deg, #0BC4D9 11%, #D932CE 50%);
     -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
+    font-family: 'Yellowtail', cursive;
+    text-shadow: 1px 1px #0BC4D9, 3px 3px #D932CE;
 
 }
 #buttonWrapper{
@@ -158,16 +163,20 @@ li{
     width: 220px;
     border-radius: 38px;
     text-align: center;
+    text-shadow: none;
 }
 .btn:hover{
     cursor: pointer;
     background: rgb(46,3,140);
     background: linear-gradient(180deg, rgba(46,3,140,1) 29%, rgba(192,4,201,1) 100%);
 }
+.btn:active{
+    box-shadow: 0 0 15px violet;
+}
 #startFightMessage{
-    min-height: 60px;
+    min-height: 35px;
     flex-basis: 100%;
-    font-size: 35px;
+    font-size: 32px;
     text-align: center;
 }
 #blackFade{
@@ -195,6 +204,7 @@ li{
     width: 350px;
     animation: rightslide 0.5s forwards;
     left: -250px;
+    top: 0;
     display: block;
     font-size: 36px;
 }
@@ -256,5 +266,277 @@ li{
 #playerText{
     background-color: #D932CE;
 }
-
-
+.shrinkPic{
+    animation: shrinking 0.8s forwards;
+}
+@keyframes shrinking{
+    100%{
+        width: 250px;
+        font-size: 30px;
+    }
+}
+.shrinkPicComputer{
+    position: relative;
+    animation: shrinkingComputer 0.5s forwards;
+}
+@keyframes shrinkingComputer{
+    100%{
+        transform: translate(100px);
+        width: 250px;
+        font-size: 30px;
+    }
+}
+#playerHUD{
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 310px;
+    width: 250px;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 270px;
+}
+.heartContainerPlayer{
+    display: flex;
+    width: 250px;
+    justify-content: flex-start;
+}
+.heartPlayer {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+    .heartPlayer:before,
+    .heartPlayer:after {
+    position: absolute;
+    content: "";
+    left: 20px;
+    top: 0;
+    width: 20px;
+    height: 33px;
+    background: #D932CE;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+.heartPlayer:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+#computerHUD{
+    display: flex;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    flex-direction: column;
+}
+.computerWeaponWrap{
+    min-height: 250px;
+    min-width: 250px;
+}
+.heartContainerComputer{
+    display: flex;
+    width: 250px;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+}
+.heartComputer {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    /* display: inline-block; */
+}
+.heartComputer:before,
+.heartComputer:after {
+    position: absolute;
+    content: "";
+    left: 20px;
+    top: 0;
+    width: 20px;
+    height: 33px;
+    background: #0BC4D9;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+.heartComputer:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+#matchText{
+    left: 250px;
+    width: 450px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.weapon{
+    cursor: pointer;
+    width: 80px;
+    border: 1px solid black;
+    height: 82px;
+}
+.weaponSelected{
+    border: 1px solid #D932CE;
+}
+#weaponHead{
+    width: 250px;
+    text-align: center;
+}
+.chooseFighterPlayer{
+    color: #D932CE;
+    font-size: 18px;
+}
+.chooseFighterComputer{
+    color: #0BC4D9;
+    text-align: right;
+    font-size: 18px;
+}
+.weaponText{
+    font-size: 48px;
+    min-height: 73px;
+    min-width: 250px;
+    text-align: center;
+    text-shadow: 0 0 10px violet;
+}
+.roundText{
+    font-size: 140px;
+    position: absolute;
+    animation: slideDown2 1.8s forwards;
+    text-shadow: 3px 3px #0BC4D9, 5px 5px #D932CE;
+    top: -180px;
+    left: 240px;
+    z-index: 3;
+    font-family: 'Yellowtail', cursive;
+}
+@keyframes slideDown2{
+    25%{
+        top: 184px;
+        left: 240px;
+    }
+    50%{
+        top: 184px;
+        left: 240px;
+    }
+    75%{
+        top: 184px;
+        left: 240px;
+    }
+     100%{
+        top: 780px;
+    } 
+}
+.playerWeapon{
+    width: 250px;
+    position: absolute;
+    bottom: -20px;
+}
+.computerWeapon{
+    width: 250px;
+    transform: scaleX(-1);
+    position: absolute;
+    top: -10px;
+}
+.playerWeaponText{
+    font-size: 38px;
+    height: 150px;
+    padding-top: 90px;
+    box-sizing: content-box;
+}
+#chooseWeaponPrompt{
+    font-size: 56px;
+    text-align: center;
+    font-family: 'Yellowtail', cursive;
+    text-shadow: 1px 1px #0BC4D9, 3px 3px #D932CE;
+    height: 60px;
+}
+.chooseWeaponPromptFade{
+    animation: fadeOut 1s forwards;
+}
+@keyframes fadeOut {
+    0%{
+        opacity: 100%;
+    }
+    80%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 0%;
+    }
+}
+.playerShake{
+    animation: shakePlayer 0.1s 1 alternate;
+}
+@keyframes shakePlayer{
+    100%{
+        transform: rotate(4deg);
+    }  
+}
+.computerShake{
+    left: 100px;
+    animation: shakePlayer 0.1s 1 alternate;
+}
+.weaponFade{
+    animation: weaponFade 0.5s forwards;
+}
+@keyframes weaponFade{
+    100%{
+        opacity: 0%;
+    }
+}
+.heartDamageComputer:before,
+.heartDamageComputer:after{
+    animation: damageComputer 1s forwards;
+    background-color: rgba(11, 196, 217, 1);
+}
+@keyframes damageComputer{
+    0%{
+        background-color: rgba(11, 196, 217, 1);
+    }
+    100%{
+        background-color: rgba(11, 196, 217, 0);
+    }
+}
+.heartDamagePlayer:before,
+.heartDamagePlayer:after{
+    animation: damagePlayer 1s forwards;
+    background-color: rgba(217, 50, 206, 1);
+}
+@keyframes damagePlayer{
+    0%{
+        background-color: rgba(217, 50, 206, 1);
+    }
+    100%{
+        background-color: rgba(217, 50, 206, 0);
+    }
+}
+.announceWinner{
+    font-size: 70px;
+    position: absolute;
+    animation: appear 3s forwards;
+    text-shadow: 3px 3px #0BC4D9, 5px 5px #D932CE;
+    left: 250px;
+    top: 254px;
+    z-index: 3;
+    font-family: 'Yellowtail', cursive;
+    text-align: center;
+    min-width: 469px;
+}
+@keyframes appear{
+    0%{
+        transform: scale(0, 0);
+    }
+    50%{
+        transform: scale(1, 1);
+    }
+    75%{
+        top: 254px;
+    }
+    100%{
+        top: 780px;
+    }
+}
