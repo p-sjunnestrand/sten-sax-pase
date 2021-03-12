@@ -11,8 +11,8 @@ const choiceArray =
         weapon : "påse",
         img : "img/org/Rock-paper-scissors_(paper).png"
     }];
-let livesPlayerOne = 5;
-let livesPlayerTwo = 5;
+let livesPlayerOne = 3;
+let livesPlayerTwo = 3;
 let roundCounter = 0;
 let lastWin = false;
 let winStreak = 0;
@@ -47,8 +47,8 @@ function startScreen () {
 
 function fighterPicker () {
     roundCounter = 0;
-    livesPlayerOne = 1;
-    livesPlayerTwo = 1;
+    livesPlayerOne = 3;
+    livesPlayerTwo = 3;
     if (lastWin == true){
         winStreak++;
     }
