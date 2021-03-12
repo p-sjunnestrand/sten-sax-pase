@@ -40,9 +40,13 @@ document.getElementById('pickFighter').addEventListener('click', function(){
 })
 
 function startScreen () {
+    let title = document.createElement('div');
+    title.innerHTML = 'Klunskampen';
+    title.classList.add('title');
+    document.getElementById('wrapper').appendChild(title);
     let startMenu = document.createElement('ul');
-        startMenu.insertAdjacentHTML('beforeend', `<li id = 'pickFighter' class = 'btn'>Välj kämpe</li>`);
-        document.getElementById('wrapper').appendChild(startMenu);
+    startMenu.insertAdjacentHTML('beforeend', `<li id = 'pickFighter' class = 'btn'>Välj kämpe</li>`);
+    document.getElementById('wrapper').appendChild(startMenu);
 }
 
 function fighterPicker () {

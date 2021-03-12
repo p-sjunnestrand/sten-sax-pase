@@ -41,6 +41,11 @@ main{
     height: 600px;
     overflow: hidden;
 }
+.title{
+    font-size: 150px;
+    font-family: 'Yellowtail', cursive;
+    text-shadow: 1px 1px #0BC4D9, 3px 3px #D932CE;
+}
 .playerWrapper{
     display: flex;
     background-color:#2E038C;
