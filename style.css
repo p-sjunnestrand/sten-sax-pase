@@ -21,7 +21,6 @@ header{
     height: 600px;
     position: absolute;
     z-index: 0;
-    /* background-color: black; */
 }
 main{
     width: 1000px;
@@ -74,27 +73,6 @@ ul{
 li{
     height: auto;
 }
-/* #weaponDiv1{
-    background-image: url("Rock-paper-scissors_(rock).png");
-    background-size: contain;
-    width: 30%;
-    height: 150px;
-    background-repeat: no-repeat;
-}
-#weaponDiv2{
-    background-image: url("Rock-paper-scissors_(paper).png");
-    background-size: contain;
-    width: 30%;
-    height: 150px;
-    background-repeat: no-repeat;
-}
-#weaponDiv3{
-    background-image: url("Rock-paper-scissors_(scissors).png");
-    background-size: contain;
-    width: 30%;
-    height: 150px;
-    background-repeat: no-repeat;
-} */
 .fighterWrapper{
     list-style-type: none;
     width: 370px;
@@ -141,10 +119,6 @@ li{
 #fighterHeader{
     flex-basis: 100%;
     font-size: 50px;
-    /* background: -webkit-linear-gradient(90deg, #0BC4D9 11%, #D932CE 50%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent; */
     font-family: 'Yellowtail', cursive;
     text-shadow: 1px 1px #0BC4D9, 3px 3px #D932CE;
 
@@ -346,7 +320,6 @@ li{
     position: relative;
     width: 50px;
     height: 50px;
-    /* display: inline-block; */
 }
 .heartComputer:before,
 .heartComputer:after {

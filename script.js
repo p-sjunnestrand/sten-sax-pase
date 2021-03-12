@@ -67,18 +67,7 @@ function fighterPicker () {
     chooseFighterPlayer.classList.add('chooseFighterPlayer');
     chooseFighterPlayer.innerHTML = 'Din kämpe';
     playerSide.appendChild(chooseFighterPlayer);
-    console.log(fighterArray);
-    // let fighterWrapper = document.createElement('div');
-    // fighterWrapper.classList.add('fighterWrapper');
-
-    // for (fighter in fighterArray) {
-    //     if (fighterArray[fighter].id == 'random') {
-    //         fighterWrapper.insertAdjacentHTML('beforeend', `<div class = "fighter" id = "${fighterArray[fighter].id}P">?</div>`);
-    //     } else {
-    //         fighterWrapper.insertAdjacentHTML('beforeend', `<img src="${fighterArray[fighter].picture}" class = "fighter" id = "${fighterArray[fighter].id}P">`);
-    //     }
-    // }
-    // playerSide.appendChild(fighterWrapper);
+    //console.log(fighterArray);
 
     let fighterWrapperP = document.createElement('div');
     fighterWrapperP.classList.add('fighterWrapper');
@@ -137,14 +126,14 @@ function fighterPicker () {
     buttonList.insertAdjacentHTML('beforeend', `<li id = 'startFightButton' class = 'btn'>Börja fajten!</li>`);
 
     fighterWrapperP.addEventListener('click', function(evt){
-        console.log(evt);
+        //console.log(evt);
         let selected = document.querySelector('.fighterSelectedP');
         if (selected != null){
             selected.classList.remove('fighterSelectedP');
         }
         for (fighter in fighterArray) {
             if (evt.target.classList[1] == fighterArray[fighter].id){
-                console.log(fighterArray[fighter].fighter);
+                //console.log(fighterArray[fighter].fighter);
                 if (fighterArray[fighter].fighter == 'Slumpad') {
                     let randomFighterP = Math.floor(Math.random() * 8);
                     playerFighter = fighterArray[randomFighterP]//.fighter;
@@ -158,17 +147,17 @@ function fighterPicker () {
     });
 
     fighterWrapperC.addEventListener('click', function(evt){
-        console.log(evt);
+        //console.log(evt);
         let selected = document.querySelector('.fighterSelectedC');
         if (selected != null){
             selected.classList.remove('fighterSelectedC');
         }
         for (fighter in fighterArray) {
             if (evt.target.classList[1] == fighterArray[fighter].id){
-                console.log(fighterArray[fighter].fighter);
+                //console.log(fighterArray[fighter].fighter);
                 if (fighterArray[fighter].fighter == 'Slumpad') {
                     let randomFighterC = Math.floor(Math.random() * 8);
-                    console.log(randomFighterC);
+                    //console.log(randomFighterC);
                     computerFighter = fighterArray[randomFighterC]//.fighter;
                 } else {
                     computerFighter = fighterArray[fighter]//.fighter;
@@ -185,15 +174,13 @@ function fighterPicker () {
         buttonWrapper.appendChild(winStreakDisplay);
     }
     
-
     document.getElementById('startFightButton').addEventListener('click', function(){
         //console.log(playerFighter);
         if (playerFighter === undefined || computerFighter === undefined){
-            console.log('Välj en kämpe för dig själv och datorn!');
+            //console.log('Välj en kämpe för dig själv och datorn!');
             startFightMessage.innerHTML = 'Välj en kämpe för dig själv och datorn!';
         }
         else {
-            // startFightMessage.innerHTML = `${playerFighter.fighter} vs ${computerFighter.fighter}!`;
             loadFightScreen(playerFighter, computerFighter);
         }
     });
@@ -205,57 +192,6 @@ function loadFightScreen (playerOne, playerTwo) {
     blackFade.id = "blackFade";
     document.querySelector('main').insertAdjacentElement('afterbegin', blackFade);
     fade(blackFade, playerOne, playerTwo);
-
-    // clears the content underneath and then removes fade filter
-    // setTimeout( () => {
-    //     document.getElementById('wrapper').innerHTML = '';
-    //     blackFade.remove();
-    //     playerLeft(playerOne);
-    
-        // setTimeout( () => {
-        //     //creates a picture of chosen player character that slides in from left
-        //     let playerSlide = document.createElement('div');
-        //     playerSlide.id = 'playerSlide';
-        //     let playerSlidePic = document.createElement('img');
-        //     playerSlidePic.id = 'playerSlidePic';
-        //     playerSlidePic.src = playerOne.picture;
-        //     console.log(playerSlidePic);
-        //     playerSlide.appendChild(playerSlidePic);
-        //     document.getElementById('wrapper').appendChild(playerSlide);
-        //     let playerText = document.createElement('div');
-        //     playerText.id = 'playerText';
-        //     playerText.insertAdjacentHTML('afterbegin', `${playerOne.fighter}`);
-        //     playerSlide.appendChild(playerText);
-
-        //     setTimeout( () => {
-        //         // creates the text VS
-        //         let vsText = document.createElement('div');
-        //         vsText.innerHTML = 'VS';
-        //         vsText.id ='vs';
-        //         document.getElementById('wrapper').appendChild(vsText);
-                
-        //         setTimeout( () => {
-        //             //creates a picture of chosen computer character that slides in from right
-        //             let computerSlide = document.createElement('div');
-        //             computerSlide.id = 'computerSlide';
-        //             let computerText = document.createElement('div');
-        //             computerText.id = 'computerText';
-        //             computerText.insertAdjacentHTML('afterbegin', `${playerTwo.fighter}`);
-        //             computerSlide.appendChild(computerText);
-        //             let computerSlidePic = document.createElement('img');
-        //             computerSlidePic.id = 'computerSlidePic';
-        //             computerSlidePic.src = playerTwo.picture;
-        //             computerSlide.appendChild(computerSlidePic);
-        //             document.getElementById('wrapper').appendChild(computerSlide);
-
-        //             setTimeout( () => {
-        //                 loadMatch();
-                        
-        //             }, 2000)
-        //         }, 500);
-        //     }, 700);
-        // }, 500);
-    // }, 500)
 }
 
 function fade(blackFade, playerOne, playerTwo) {
@@ -274,7 +210,7 @@ function playerLeft(playerOne, playerTwo){
         let playerSlidePic = document.createElement('img');
         playerSlidePic.id = 'playerSlidePic';
         playerSlidePic.src = playerOne.picture;
-        console.log(playerSlidePic);
+        //console.log(playerSlidePic);
         playerSlide.appendChild(playerSlidePic);
         document.getElementById('wrapper').appendChild(playerSlide);
         let playerText = document.createElement('div');
@@ -326,17 +262,14 @@ function shrinkPlayers(playerSlide, playerSlidePic, playerText, computerSlide, c
             computerSlidePic.style.width = '250px';
             document.getElementById('vs').remove();
         }, 1000)
-        
         loadAssets();
     }, 2000);
 }
 function loadAssets(){
     roundCounter++;
-    console.log(livesPlayerOne, livesPlayerTwo);
+    //console.log(livesPlayerOne, livesPlayerTwo);
     setTimeout(()=>{
         if (roundCounter > 1){
-            // let removeStuff = document.querySelector('.playerWeapon');
-            // removeStuff.remove();
             document.getElementById('computerHUD').remove();
             document.getElementById('playerHUD').remove();
             document.getElementById('chooseWeaponPrompt').remove();
@@ -385,8 +318,8 @@ function loadAssets(){
 function loadHearts(heartContainer, livesPlayer, player){
     for (i = 1; i <= livesPlayer; i++){
             heartContainer.insertAdjacentHTML('beforeend', `<div class = 'heart${player}'></div>`);
-            console.log(i);
-            console.log(livesPlayerTwo);
+            // console.log(i);
+            // console.log(livesPlayerTwo);
     }
 }
 function PvCscreen (computerWeaponText, playerWeaponText) {
@@ -408,13 +341,13 @@ function PvCscreen (computerWeaponText, playerWeaponText) {
     let playerChoice;
 
     document.getElementById('weaponsWrp').addEventListener('click', function(evt){
-        console.log(evt.target.id);
+        //console.log(evt.target.id);
         let btnWrp = document.createElement('ul');
         let btnRoll = document.createElement('li');
         btnRoll.classList.add('btn');
         btnRoll.innerHTML = 'Klunsa!'
         btnRoll.addEventListener('click', function(){
-            console.log(playerFighter);
+            //console.log(playerFighter);
             startFight(btnRoll, weaponsWrp, weaponHead, selectedWeaponText, roundCounter, playerChoice, computerWeaponText, playerWeaponText);
         }); 
         if (playerChoice == undefined){
@@ -429,15 +362,15 @@ function PvCscreen (computerWeaponText, playerWeaponText) {
         switch (evt.target.id) {
             case "sten":
                 playerChoice = 1; 
-                console.log(playerChoice);
+                //console.log(playerChoice);
                 break;
             case "sax":
                 playerChoice = 2;
-                console.log(playerChoice);
+                //console.log(playerChoice);
                 break;
             case "påse":
                 playerChoice = 3;
-                console.log(playerChoice);
+                //console.log(playerChoice);
                 break;
             }
         document.getElementById(evt.target.id).classList.add('weaponSelected');
@@ -448,8 +381,8 @@ function PvCscreen (computerWeaponText, playerWeaponText) {
 }
 
 function startFight(btnRoll, weaponsWrp, weaponHead, selectedWeaponText, roundCounter, playerChoice, computerWeaponText, playerWeaponText){
-    let computerChoice = 1;//Math.floor(Math.random() * 3 + 1);
-    console.log(computerChoice);
+    let computerChoice = Math.floor(Math.random() * 3 + 1);
+    //console.log(computerChoice);
     btnRoll.remove();
     weaponsWrp.remove();
     weaponHead.remove();
@@ -458,49 +391,49 @@ function startFight(btnRoll, weaponsWrp, weaponHead, selectedWeaponText, roundCo
     roundText.classList.add('roundText');
     roundText.innerHTML = `Omgång ${roundCounter}`;
     document.getElementById('wrapper').appendChild(roundText);
-    console.log(roundCounter);
-    console.log(playerChoice);
-    console.log(computerChoice);
+    // console.log(roundCounter);
+    // console.log(playerChoice);
+    // console.log(computerChoice);
 
     setTimeout(()=>{
         loadPlayerWeapon(playerChoice, computerChoice, computerWeaponText, playerWeaponText);
     }, 1700);
 }
 function loadPlayerWeapon(playerChoice, computerChoice, computerWeaponText, playerWeaponText){
-    console.log(playerChoice);
+    // console.log(playerChoice);
     let playerWeapon = document.createElement('img');
     playerWeapon.classList.add('playerWeapon');
-    console.log(choiceArray[playerChoice-1]);
+    // console.log(choiceArray[playerChoice-1]);
     playerWeapon.src = choiceArray[playerChoice-1].img;
     playerHUD.appendChild(playerWeapon);
-    console.log(playerChoice);
+    // console.log(playerChoice);
     setTimeout(()=>{
         loadPlayerWeaponText(playerChoice, computerChoice, computerWeaponText, playerWeaponText);
     }, 700);
 }
 function loadPlayerWeaponText(playerChoice, computerChoice, playerWeaponText, computerWeaponText){
     playerWeaponText.innerHTML = `Du valde ${choiceArray[playerChoice-1].weapon}`;
-    console.log(playerChoice);
+    // console.log(playerChoice);
     setTimeout(()=> {
         loadComputerWeapon(playerChoice, computerChoice, computerWeaponText, playerWeaponText);
     }, 700);
 }
 function loadComputerWeapon(playerChoice, computerChoice, computerWeaponText, playerWeaponText){
-    console.log(playerChoice);
+    // console.log(playerChoice);
     let computerWeapon = document.createElement('img');
     computerWeapon.classList.add('computerWeapon');
-    console.log(choiceArray[computerChoice-1]);
+    // console.log(choiceArray[computerChoice-1]);
     computerWeapon.src = choiceArray[computerChoice-1].img;
-    console.log(playerChoice);
+    // console.log(playerChoice);
     document.querySelector('.computerWeaponWrap').insertAdjacentElement('afterbegin', computerWeapon);
-    console.log(playerChoice);
+    // console.log(playerChoice);
     setTimeout(()=> {
         loadComputerWeaponText(playerChoice, computerChoice, computerWeaponText, playerWeaponText);
     }, 700);
 }
 function loadComputerWeaponText(playerChoice, computerChoice, computerWeaponText, playerWeaponText){
     computerWeaponText.innerHTML = `Motståndaren valde ${choiceArray[computerChoice-1].weapon}`;
-    console.log(playerChoice);
+    // console.log(playerChoice);
     setTimeout(()=>{
         showResults(playerChoice, computerChoice, computerWeaponText, playerWeaponText);
     }, 1000);
@@ -508,36 +441,30 @@ function loadComputerWeaponText(playerChoice, computerChoice, computerWeaponText
 function showResults(playerChoice, computerChoice, computerWeaponText, playerWeaponText){
     computerWeaponText.innerHTML = '';
     playerWeaponText.innerHTML = '';
-    console.log(playerChoice, computerChoice);
+    // console.log(playerChoice, computerChoice);
     let result = Math.round((playerChoice/computerChoice)*10)/10;
-    console.log(result);
+    // console.log(result);
 
     if (result == 0.5 || result == 0.7 || result == 3) {
         // console.log('Spelare ett vinner!');
-        // document.getElementById('chooseWeaponPrompt').innerHTML = `${choiceArray[playerChoice-1].weapon} slår ${choiceArray[computerChoice-1].weapon}!`;
-        // document.getElementById('chooseWeaponPrompt').classList.add('chooseWeaponPromptFade');
         livesPlayerTwo--;
-        console.log(livesPlayerTwo)
+        // console.log(livesPlayerTwo)
         winner('Du vann!', choiceArray[playerChoice-1].weapon, choiceArray[computerChoice-1].weapon);
         
     } else if (result == 1) {
         // console.log("Lika!");
-        // document.getElementById('chooseWeaponPrompt').innerHTML = 'Lika!';
-        // document.getElementById('chooseWeaponPrompt').classList.add('chooseWeaponPromptFade');
         winner('Lika!', choiceArray[computerChoice-1].weapon, choiceArray[playerChoice-1].weapon, '');
     } else {
         // console.log("Spelare två vinner!");
-        // document.getElementById('chooseWeaponPrompt').innerHTML = `${choiceArray[computerChoice-1].weapon} slår ${choiceArray[playerChoice-1].weapon}!`;
-        // document.getElementById('chooseWeaponPrompt').classList.add('chooseWeaponPromptFade');
         livesPlayerOne--;
-        console.log(livesPlayerOne);
+        // console.log(livesPlayerOne);
         winner('Motståndaren vann!', choiceArray[computerChoice-1].weapon, choiceArray[playerChoice-1].weapon);  
     }
     
     
 }
 function winner (winnerMsg, weaponP, weaponC){
-    console.log(winnerMsg);
+    // console.log(winnerMsg);
     if (winnerMsg == 'Lika!'){
         document.getElementById('chooseWeaponPrompt').innerHTML = `${winnerMsg}`;
         document.getElementById('chooseWeaponPrompt').classList.add('chooseWeaponPromptFade');
@@ -555,10 +482,10 @@ function winner (winnerMsg, weaponP, weaponC){
             if (winnerMsg == 'Du vann!'){
                 document.querySelector('.playerWeapon').style.left = weaponMoveCounter + 'px';
                 weaponMoveCounter += 20;
-                console.log(weaponMoveCounter);
+                // console.log(weaponMoveCounter);
             } else {
                 document.querySelector('.computerWeapon').style.right = weaponMoveCounter + 'px';
-                console.log(weaponMoveCounter);
+                // console.log(weaponMoveCounter);
                 weaponMoveCounter += 20;
             }
             if (weaponMoveCounter >= 645){
@@ -568,17 +495,6 @@ function winner (winnerMsg, weaponP, weaponC){
                     document.querySelector('.computerWeapon').classList.add('weaponFade');
                     document.querySelector('.playerWeapon').classList.add('weaponFade');
                     resolveWinner('.heartContainerComputer', 'heartDamageComputer', winnerMsg);
-                    // setTimeout(()=>{
-                    //     let heartDamageContainer = document.querySelector('.heartContainerComputer');
-                    //     let heartDamage = heartDamageContainer.lastChild;
-                    //     console.log(heartDamage);
-                    //     heartDamage.classList.add('heartDamage');
-
-                    //     let announceWinner = document.createElement('div');
-                    //     announceWinner.innerHTML = `${winnerMsg}`;
-                    //     announceWinner.classList.add('announceWinner');
-                    //     document.getElementById('wrapper').appendChild(announceWinner);
-                    // }, 1000);
                 } else {
                     document.getElementById('playerSlidePic').classList.add('playerShake');
                     document.querySelector('.computerWeapon').classList.add('weaponFade');
@@ -588,20 +504,13 @@ function winner (winnerMsg, weaponP, weaponC){
                 
             }
         }, 10);
-        // setTimeout(()=> {
-        //     document.getElementById('chooseWeaponPrompt').classList.remove('chooseWeaponPromptFade');
-        //     document.getElementById('chooseWeaponPrompt').innerHTML = `${winnerMsg}`;
-        //     setTimeout(()=> {
-        //         document.getElementById('chooseWeaponPrompt').classList.add('chooseWeaponPromptFade');
-        //     }, 1500)
-        // }, 1000);
     }
 }
 function resolveWinner(heartContainer, damagedHeart, winnerMsg){
     setTimeout(()=>{
         let heartDamageContainer = document.querySelector(heartContainer);
         let heartDamage = heartDamageContainer.lastChild;
-        console.log(heartDamage);
+        // console.log(heartDamage);
         heartDamage.classList.add(damagedHeart);
         
 
@@ -610,20 +519,13 @@ function resolveWinner(heartContainer, damagedHeart, winnerMsg){
         announceWinner.classList.add('announceWinner');
         document.getElementById('wrapper').appendChild(announceWinner);
         setTimeout(()=> {
-            // let removeStuff = document.querySelector('.playerWeapon');
-            // removeStuff.remove();
-            // document.getElementById('computerHUD').remove();
-            // //document.getElementById('computerHUD').remove();
-            // document.getElementById('chooseWeaponPrompt').remove();
-            // document.getElementById('matchText').remove();
-            // document.getElementById('vs').remove();
             if (livesPlayerOne == 0){
-                console.log('Motståndaren vinner fajten!');
+                // console.log('Motståndaren vinner fajten!');
                 lastWin = false;
                 winStreak = 0;
                 endMatch('Motståndaren');
             } else if (livesPlayerTwo == 0) {
-                console.log('Du vinner fajten!');
+                // console.log('Du vinner fajten!');
                 lastWin = true;
                 endMatch('Du');
             } else {
