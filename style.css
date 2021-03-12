@@ -540,3 +540,20 @@ li{
         top: 780px;
     }
 }
+.winnerText {
+    font-size: 100px;
+    position: absolute;
+    animation: appear 3s forwards;
+    text-shadow: 3px 3px #0BC4D9, 5px 5px #D932CE;
+    left: 30px;
+    top: 224px;
+    z-index: 3;
+    font-family: 'Yellowtail', cursive;
+    text-align: center;
+    min-width: 928px;
+}
+.winStreak{
+    position: absolute;
+    bottom: 0;
+    font-size: 1.5rem;
+}

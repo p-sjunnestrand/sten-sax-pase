@@ -11,63 +11,15 @@ const choiceArray =
         weapon : "påse",
         img : "img/org/Rock-paper-scissors_(paper).png"
     }];
-let livesPlayerOne = 1;
-let livesPlayerTwo = 1;
+let livesPlayerOne = 5;
+let livesPlayerTwo = 5;
 let roundCounter = 0;
-console.log(livesPlayerOne);
-console.log(livesPlayerTwo);
-// let displayScoreOne = document.getElementById('scorePlayerOne');
-// let displayScoreTwo = document.getElementById('scorePlayerTwo');
+let lastWin = false;
+let winStreak = 0;
+// console.log(livesPlayerOne);
+// console.log(livesPlayerTwo);
 
 
-// // console.log('A wins on 0.5/ 0.7 /3');
-
-// function checkResult (result) {
-//     if (result == 0.5 || result == 0.7 || result == 3) {
-//         console.log('Spelare ett vinner!');
-//         document.getElementById('results').innerHTML = 'Spelare ett vinner!';
-//         scorePlayerOne++;
-//         displayScoreOne.innerHTML = scorePlayerOne;
-//     } else if (result == 1) {
-//         console.log("Lika!");
-//         document.getElementById('results').innerHTML = 'Lika!';
-//     } else {
-//         console.log("Spelare två vinner!");
-//         document.getElementById('results').innerHTML = 'Spelare två vinner!';
-//         scorePlayerTwo++;
-//         displayScoreTwo.innerHTML = scorePlayerTwo;
-//     }
-//     console.log('result: ',result);
-// }
-
-// function printPlayerChoice (playerChoice, computerRandomInt) {
-//     document.getElementById('playerOneChoice').innerHTML = `Spelare ett valde ${choiceArray[playerChoice-1]}.`;
-//     console.log(choiceArray[playerChoice-1]);
-//     document.getElementById('playerTwoChoice').innerHTML = `Spelare två valde ${choiceArray[computerRandomInt-1]}.`;
-//     console.log(choiceArray[computerRandomInt-1]);
-// }
-
-// function CvCroll () {
-//     let randomIntA = Math.floor(Math.random() * 3 + 1);
-//     let randomIntB = Math.floor(Math.random() * 3 + 1);
-//     console.log('randomInt: ',randomIntA, randomIntB);
-//     let result = Math.round((randomIntA/randomIntB)*10)/10;
-//     printPlayerChoice(randomIntA, randomIntB);
-//     checkResult(result);
-// }
-    
-//     displayScoreOne.innerHTML = scorePlayerOne;
-    
-//     displayScoreTwo.innerHTML = scorePlayerTwo;
-// }
-
-// function PvCroll () {
-//     let computerRandomInt = Math.floor(Math.random() * 3 + 1);
-//     console.log('randomInt: ', computerRandomInt);
-//     let result = Math.round((playerChoice/computerRandomInt)*10)/10;
-//     printPlayerChoice(playerChoice, computerRandomInt);
-//     checkResult(result);
-// }
 startScreen();
 let playerFighter;
 let computerFighter;
@@ -94,6 +46,12 @@ function startScreen () {
 }
 
 function fighterPicker () {
+    roundCounter = 0;
+    livesPlayerOne = 1;
+    livesPlayerTwo = 1;
+    if (lastWin == true){
+        winStreak++;
+    }
     document.getElementById('wrapper').innerHTML = '';
 
     let fighterHeader = document.createElement('header');
@@ -220,6 +178,13 @@ function fighterPicker () {
             }
         }
     });
+    if (winStreak > 0){
+        let winStreakDisplay = document.createElement('div');
+        winStreakDisplay.classList.add('winStreak');
+        winStreakDisplay.innerHTML = `Vinster i rad: ${winStreak}`;
+        buttonWrapper.appendChild(winStreakDisplay);
+    }
+    
 
     document.getElementById('startFightButton').addEventListener('click', function(){
         //console.log(playerFighter);
@@ -483,7 +448,7 @@ function PvCscreen (computerWeaponText, playerWeaponText) {
 }
 
 function startFight(btnRoll, weaponsWrp, weaponHead, selectedWeaponText, roundCounter, playerChoice, computerWeaponText, playerWeaponText){
-    let computerChoice = Math.floor(Math.random() * 3 + 1);
+    let computerChoice = 1;//Math.floor(Math.random() * 3 + 1);
     console.log(computerChoice);
     btnRoll.remove();
     weaponsWrp.remove();
@@ -654,13 +619,31 @@ function resolveWinner(heartContainer, damagedHeart, winnerMsg){
             // document.getElementById('vs').remove();
             if (livesPlayerOne == 0){
                 console.log('Motståndaren vinner fajten!');
-                console.log(blackFade);
+                lastWin = false;
+                winStreak = 0;
+                endMatch('Motståndaren');
             } else if (livesPlayerTwo == 0) {
-                console.log('Du vinner fajtern!');
-                console.log(blackFade);
+                console.log('Du vinner fajten!');
+                lastWin = true;
+                endMatch('Du');
             } else {
                 loadAssets();
             }
         }, 2000);
     }, 1000);
+}
+function endMatch (winningPlayer) {
+    let blackFade = document.createElement('div');
+    blackFade.id = "blackFade";
+    document.querySelector('main').insertAdjacentElement('afterbegin', blackFade);
+    setTimeout(()=>{
+        let winnerText = document.createElement('div');
+        winnerText.innerHTML = `${winningPlayer} vinner fajten!`;
+        winnerText.classList.add('winnerText');
+        blackFade.appendChild(winnerText);
+        setTimeout(()=>{
+            blackFade.remove();
+            fighterPicker();
+        }, 3000)
+    }, 500);
 }
